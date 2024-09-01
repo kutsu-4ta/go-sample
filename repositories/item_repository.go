@@ -1,17 +1,21 @@
 package repositories
 
+import (
+	"gin-fleamarket/models"
+)
+
 type IItemRepository interface {
-        FindAll(*[]models.Item, error)
+	FindAll() (*[]models.Item, error)
 }
 
-type IItemMemoryRepository struct {
-    item []models.Item
+type ItemMemoryRepository struct {
+	items []models.Item
 }
 
-func NewItemMemoryRepository(items []models.Item) IItemRepository {
-    return & NewItemMemoryRepository{items: items}
+func NewItemMemoryRepository(items []models.Item) IItemRepository { 
+	return &ItemMemoryRepository{items: items}
 }
 
-func (r *NewItemMemoryRepository) FindAll() (*[]models.Item, error) {
-    return &r.items, nil
+func (r *ItemMemoryRepository) FindAll() (*[]models.Item, error) {
+	return &r.items, nil
 }
